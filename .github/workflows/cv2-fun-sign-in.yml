@@ -4,11 +4,11 @@ on:
     - cron: '*/5 * * * *'
 
 jobs:
-  stale:
+  cv2-fun:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: ./packages/cv2-fun-sign-in
         with:
-          emails: ${{ sercets.CV2_FUN_EMAILS }}
-          passwords: ${{ sercets.CV2_FUN_PASSWORDS }}
+          emails: ${{ secrets.CV2_FUN_EMAILS }}
+          passwords: ${{ secrets.CV2_FUN_PASSWORDS }}
