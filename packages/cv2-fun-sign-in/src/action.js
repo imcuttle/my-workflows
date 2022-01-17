@@ -6,9 +6,10 @@ const core = require('@actions/core')
 const main = require('./index')
 
 async function run() {
-  const email = core.getInput('email', { required: true })
-  const password = core.getInput('password', { required: true })
-  await main(email, password)
+  const emails = core.getMultilineInput('emails', { required: true })
+  const passwords = core.getMultilineInput('passwords', { required: true })
+
+  await Promise.all(emails.map((email, i) => main(email, passwords[i])))
   core.info('签到成功')
 }
 

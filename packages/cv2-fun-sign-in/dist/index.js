@@ -10814,10 +10814,15 @@
       }
 
       module.exports = async function cv2FunSignIn(email, password) {
-        const cookies = await login(email, password)
-        const cookie = cookies.reduce((acc, cookie) => acc.concat(`${cookie.name}=${cookie.value}`), []).join('; ')
-        client.defaults.headers['cookie'] = cookie
-        await signIn()
+        try {
+          const cookies = await login(email, password)
+          const cookie = cookies.reduce((acc, cookie) => acc.concat(`${cookie.name}=${cookie.value}`), []).join('; ')
+          client.defaults.headers['cookie'] = cookie
+          await signIn()
+        } catch (err) {
+          err.message = `cv2FunSignIn failed email: ${email}\n${err.message}`
+          throw err
+        }
       }
 
       module.exports.client = client
@@ -11001,9 +11006,10 @@
     const main = __nccwpck_require__(7367)
 
     async function run() {
-      const email = core.getInput('email', { required: true })
-      const password = core.getInput('password', { required: true })
-      await main(email, password)
+      const emails = core.getMultilineInput('emails', { required: true })
+      const passwords = core.getMultilineInput('passwords', { required: true })
+
+      await Promise.all(emails.map((email, i) => main(email, passwords[i])))
       core.info('签到成功')
     }
 

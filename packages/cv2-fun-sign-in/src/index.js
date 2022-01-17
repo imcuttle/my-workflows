@@ -41,10 +41,15 @@ function signIn() {
 }
 
 module.exports = async function cv2FunSignIn(email, password) {
-  const cookies = await login(email, password)
-  const cookie = cookies.reduce((acc, cookie) => acc.concat(`${cookie.name}=${cookie.value}`), []).join('; ')
-  client.defaults.headers['cookie'] = cookie
-  await signIn()
+  try {
+    const cookies = await login(email, password)
+    const cookie = cookies.reduce((acc, cookie) => acc.concat(`${cookie.name}=${cookie.value}`), []).join('; ')
+    client.defaults.headers['cookie'] = cookie
+    await signIn()
+  } catch (err) {
+    err.message = `cv2FunSignIn failed email: ${email}\n${err.message}`
+    throw err
+  }
 }
 
 module.exports.client = client

@@ -1,11 +1,11 @@
 name: 'cv2-fun-sign-in'
 description: 'cv2-fun-sign-in'
 inputs:
-  password: # id of input
-    description: 'password'
+  passwords: # id of input
+    description: 'passwords'
     required: true
-  email:
-    description: 'email'
+  emails:
+    description: 'emails'
     required: true
 runs:
   using: 'node12'
