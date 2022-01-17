@@ -1,0 +1,68 @@
+{
+  "name": "my-workflows",
+  "version": "1.0.0",
+  "description": "my useful workflows",
+  "author": "imcuttle <moyuyc95@gmail.com>",
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "test": "npx jest",
+    "test:watch": "npm test -- --watch",
+    "preversion": "npm test",
+    "postpublish": "git push --tag origin $(git rev-parse --abbrev-ref HEAD)",
+    "new": "npx edam",
+    "release": "npx lerna publish"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pnpm -r run build && pnpm -r exec -- git add dist && npx lerna toc && git add README.md && pretty-quick --staged"
+    }
+  },
+  "sideEffects": false,
+  "engines": {
+    "node": ">=10"
+  },
+  "keywords": [
+    "imcuttle",
+    "my",
+    "workflows",
+    "my-workflows"
+  ],
+  "main": "src",
+  "types": "src/index.d.ts",
+  "license": "MIT",
+  "repository": "imcuttle/my-workflows",
+  "edam": {
+    "source": "pkg",
+    "alias": {
+      "pkg": {
+        "url": "./packages/__template",
+        "type": "file",
+        "config": {
+          "output": "./packages/"
+        }
+      }
+    }
+  },
+  "jest": {
+    "testMatch": [
+      "**/__test{s,}__/*.(spec|test).{t,j}s{x,}"
+    ]
+  },
+  "packagePrefix": "@my-workflows/",
+  "devDependencies": {
+    "@types/jest": "^27.4.0",
+    "@vercel/ncc": "^0.33.1",
+    "change-case": "^4.1.2",
+    "commander": "^8.3.0",
+    "concurrently": "^7.0.0",
+    "edam-cli": "^3.4.15",
+    "human-format": "^0.11.0",
+    "husky": "4",
+    "jest": "^27.4.7",
+    "lerna-cli": "^5.0.3",
+    "lerna-command-toc": "^2.0.0",
+    "pkgxo": "^1.0.2",
+    "prettier": "^2.5.1",
+    "pretty-quick": "^3.1.3"
+  }
+}

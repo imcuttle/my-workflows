@@ -1,0 +1,14 @@
+name: 'cv2.fun everyday'
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./packages/cv2-fun-sign-in
+        with:
+          email:
+          password:

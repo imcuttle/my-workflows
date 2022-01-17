@@ -1,0 +1,12 @@
+name: 'cv2-fun-sign-in'
+description: 'cv2-fun-sign-in'
+inputs:
+  password: # id of input
+    description: 'password'
+    required: true
+  email:
+    description: 'email'
+    required: true
+runs:
+  using: 'node12'
+  main: 'src/action.js'

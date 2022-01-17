@@ -1,0 +1,44 @@
+{
+  "name": "@my-workflows/cv2-fun-sign-in",
+  "version": "0.0.0",
+  "publishConfig": {
+    "access": "public",
+    "main": "lib",
+    "types": "types",
+    "module": "es"
+  },
+  "author": "imcuttle <moyuyc95@gmail.com>",
+  "description": "cv2.fun 签到",
+  "main": "src",
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "build": "../../scripts/run nccbuild src/action.js",
+    "test": "../../scripts/run test",
+    "packlimit": "../../scripts/run packlimit",
+    "dev": "npm run build -- --watch",
+    "postpublish": "../../scripts/run pkgxo --reset",
+    "version": "npm test && npm run packlimit"
+  },
+  "dependencies": {
+    "@actions/core": "^1.6.0",
+    "axios": "^0.24.0",
+    "form-data": "^4.0.0",
+    "set-cookie-parser": "^2.4.8",
+    "socks-proxy-agent": "^6.1.1"
+  },
+  "keywords": [
+    "imcuttle",
+    "cv2-fun-sign-in",
+    "my",
+    "workflows",
+    "my-workflows"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+undefined",
+    "directory": "packages/cv2-fun-sign-in"
+  },
+  "devDependencies": {}
+}

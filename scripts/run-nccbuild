@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+const nps = require('path')
+const { execSync } = require('child_process')
+
+const restArgs = process.argv.slice(2)
+
+// const root = nps.join(__dirname, '..')
+
+try {
+  execSync(`npx ncc build ${restArgs.join(' ')}`, {
+    stdio: 'inherit'
+    // cwd: root
+  })
+} catch (ex) {
+  process.exitCode = ex.status
+}
