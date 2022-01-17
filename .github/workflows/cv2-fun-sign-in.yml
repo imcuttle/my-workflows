@@ -10,5 +10,5 @@ jobs:
       - uses: actions/checkout@v2
       - uses: ./packages/cv2-fun-sign-in
         with:
-          emails: { { sercets.CV2_FUN_EMAILS } }
-          passwords: { { sercets.CV2_FUN_PASSWORDS } }
+          emails: ${{ sercets.CV2_FUN_EMAILS }}
+          passwords: ${{ sercets.CV2_FUN_PASSWORDS }}
